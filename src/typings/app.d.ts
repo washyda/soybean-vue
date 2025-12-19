@@ -553,15 +553,137 @@ declare namespace App {
           };
           creativity: string;
         };
+        manage: {
+          common: {
+            status: {
+              enable: string;
+              disable: string;
+            };
+          };
+          user: {
+            addUser: string;
+            editUser: string;
+            title: string;
+            userName: string;
+            gender: string;
+            nickName: string;
+            phone: string;
+            email: string;
+            status: string;
+            userRole: string;
+            genderType: {
+              male: string;
+              female: string;
+            };
+            form: {
+              querySearch: string;
+              userName: string;
+              nickName: string;
+              userGender: string;
+              phone: string;
+              email: string;
+              status: string;
+              userRole: string;
+            };
+          };
+          role: {
+            addRole: string;
+            editRole: string;
+            title: string;
+            roleName: string;
+            roleCode: string;
+            description: string;
+            status: string;
+            form: {
+              querySearch: string;
+              roleName: string;
+              roleCode: string;
+              description: string;
+              status: string;
+            };
+          };
+          menu: {
+            home: string;
+            title: string;
+            id: string;
+            parentId: string;
+            menuType: string;
+            menuName: string;
+            routeName: string;
+            routePath: string;
+            pathParam: string;
+            layout: string;
+            page: string;
+            i18nKey: string;
+            icon: string;
+            localIcon: string;
+            iconTypeTitle: string;
+            order: string;
+            constant: string;
+            keepAlive: string;
+            href: string;
+            hideInMenu: string;
+            activeMenu: string;
+            multiTab: string;
+            fixedIndexInTab: string;
+            query: string;
+            button: string;
+            buttonCode: string;
+            buttonDesc: string;
+            menuStatus: string;
+            form: {
+              home: string;
+              menuType: string;
+              menuName: string;
+              routeName: string;
+              routePath: string;
+              pathParam: string;
+              page: string;
+              layout: string;
+              i18nKey: string;
+              icon: string;
+              localIcon: string;
+              order: string;
+              keepAlive: string;
+              href: string;
+              hideInMenu: string;
+              activeMenu: string;
+              multiTab: string;
+              fixedInTab: string;
+              fixedIndexInTab: string;
+              queryKey: string;
+              queryValue: string;
+              button: string;
+              buttonCode: string;
+              buttonDesc: string;
+              menuStatus: string;
+            };
+            addMenu: string;
+            editMenu: string;
+            addChildMenu: string;
+            type: {
+              directory: string;
+              menu: string;
+            };
+            iconType: {
+              iconify: string;
+              local: string;
+            };
+          };
+        };
       };
       form: {
         required: string;
         userName: FormMsg;
+        nickName: FormMsg;
         phone: FormMsg;
         pwd: FormMsg;
         confirmPwd: FormMsg;
         code: FormMsg;
         email: FormMsg;
+        roleName: FormMsg;
+        roleCode: FormMsg;
+        status: FormMsg;
       };
       dropdown: Record<Global.DropdownKey, string>;
       icon: {

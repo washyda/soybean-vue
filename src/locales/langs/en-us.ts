@@ -228,7 +228,11 @@ const local: App.I18n.Schema = {
     404: 'Page Not Found',
     500: 'Server Error',
     'iframe-page': 'Iframe',
-    home: 'Home'
+    home: 'Home',
+    manage: 'System Manage',
+    manage_role: 'Role Manage',
+    manage_user: 'User Manage',
+    manage_menu: 'Menu Manage'
   },
   page: {
     login: {
@@ -305,6 +309,124 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean just wrote some of the workbench pages casually, and it was enough to see!'
       },
       creativity: 'Creativity'
+    },
+    manage: {
+      common: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable'
+        }
+      },
+      user: {
+        addUser: 'Add User',
+        editUser: 'Edit User',
+        title: 'User Manage',
+        userName: 'User Name',
+        nickName: 'Nick Name',
+        gender: 'Gender',
+        phone: 'Phone Number',
+        email: 'Email',
+        status: 'User Status',
+        userRole: 'User Role',
+        genderType: {
+          male: 'Male',
+          female: 'Female'
+        },
+        form: {
+          querySearch: 'Please enter user name or nickname',
+          userName: 'Please enter user name',
+          nickName: 'Please enter nickname',
+          userGender: 'Please select gender',
+          phone: 'Please enter phone number',
+          email: 'Please enter email',
+          status: 'Please select user status',
+          userRole: 'Please select user role'
+        }
+      },
+      role: {
+        addRole: 'Add Role',
+        editRole: 'Edit Role',
+        title: 'Role Manage',
+        roleName: 'Role Name',
+        roleCode: 'Role Code',
+        description: 'Description',
+        status: 'Status',
+        form: {
+          querySearch: 'Please enter role name or role code',
+          roleName: 'Please enter role name',
+          roleCode: 'Please enter role code',
+          description: 'Please enter description',
+          status: 'Please select status'
+        }
+      },
+      menu: {
+        home: 'Home',
+        title: 'Menu List',
+        id: 'ID',
+        parentId: 'Parent Menu ID',
+        menuType: 'Menu Type',
+        menuName: 'Menu Name',
+        routeName: 'Route Name',
+        routePath: 'Route Path',
+        pathParam: 'Path Param',
+        layout: 'Layout',
+        page: 'Page',
+        i18nKey: 'I18n Key',
+        icon: 'Icon',
+        localIcon: 'Local Icon',
+        iconTypeTitle: 'Icon Type',
+        order: 'Order',
+        constant: 'Constant',
+        keepAlive: 'Keep Alive',
+        href: 'Href',
+        hideInMenu: 'Hide In Menu',
+        activeMenu: 'Active Menu',
+        multiTab: 'Multi Tab',
+        fixedIndexInTab: 'Fixed Index In Tab',
+        query: 'Query',
+        button: 'Button',
+        buttonCode: 'Button Code',
+        buttonDesc: 'Button Desc',
+        menuStatus: 'Menu Status',
+        form: {
+          home: 'Please select home',
+          menuType: 'Please select menu type',
+          menuName: 'Please enter menu name',
+          routeName: 'Please enter route name',
+          routePath: 'Please enter route path',
+          pathParam: 'Please enter path param',
+          page: 'Please select page',
+          layout: 'Please select layout',
+          i18nKey: 'Please enter i18n key',
+          icon: 'Please enter icon',
+          localIcon: 'Please select local icon',
+          order: 'Please enter order',
+          keepAlive: 'Please select keep alive',
+          href: 'Please enter href',
+          hideInMenu: 'Please select hide in menu',
+          activeMenu: 'Please select active menu',
+          multiTab: 'Please select multi tab',
+          fixedInTab: 'Please select fixed in tab',
+          fixedIndexInTab: 'Please enter fixed index in tab',
+          queryKey: 'Please enter query key',
+          queryValue: 'Please enter query value',
+          button: 'Please select button',
+          buttonCode: 'Please enter button code',
+          buttonDesc: 'Please enter button desc',
+          menuStatus: 'Please select menu status'
+        },
+        addMenu: 'Add Menu',
+        editMenu: 'Edit Menu',
+        addChildMenu: 'Add Child Menu',
+        type: {
+          directory: 'Directory',
+          menu: 'Menu'
+        },
+        iconType: {
+          iconify: 'Iconify Icon',
+          local: 'Local Icon'
+        }
+      }
     }
   },
   form: {
@@ -312,6 +434,10 @@ const local: App.I18n.Schema = {
     userName: {
       required: 'Please enter user name',
       invalid: 'User name format is incorrect'
+    },
+    nickName: {
+      required: 'Please enter nickname',
+      invalid: 'Nickname format is incorrect'
     },
     phone: {
       required: 'Please enter phone number',
@@ -332,6 +458,18 @@ const local: App.I18n.Schema = {
     email: {
       required: 'Please enter email',
       invalid: 'Email format is incorrect'
+    },
+    roleName: {
+      required: 'Please enter role name',
+      invalid: 'Role name format is incorrect'
+    },
+    roleCode: {
+      required: 'Please enter role code',
+      invalid: 'Role code format is incorrect'
+    },
+    status: {
+      required: 'Please select status',
+      invalid: 'Status format is incorrect'
     }
   },
   dropdown: {

@@ -6,10 +6,15 @@ html,
 body,
 #app {
   height: 100%;
-  text-autospace: normal;
+  -ms-text-autospace: normal;
 }
 
 html {
   overflow-x: hidden;
   color: rgb(var(--base-text-color));
+}
+
+/* 修复部分缩放下input无法展示_字符 */
+.n-input__input-el {
+  height: max-content !important;
 }

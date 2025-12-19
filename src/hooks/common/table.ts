@@ -89,10 +89,10 @@ export function useNaivePaginatedTable<ResponseData, ApiData>(
 
   const pagination = reactive({
     page: 1,
-    pageSize: 10,
+    pageSize: 12,
     itemCount: 0,
     showSizePicker: true,
-    pageSizes: [10, 15, 20, 25, 30],
+    pageSizes: [12, 18, 26, 32, 38],
     prefix: showTotal.value ? page => $t('datatable.itemCount', { total: page.itemCount }) : undefined,
     onUpdatePage(page) {
       pagination.page = page;
@@ -198,7 +198,7 @@ export function useTableOperate<TableData>(
   }
 
   /** the checked row keys of table */
-  const checkedRowKeys = shallowRef<string[]>([]);
+  const checkedRowKeys = shallowRef<number[]>([]);
 
   /** the hook after the batch delete operation is completed */
   async function onBatchDeleted() {

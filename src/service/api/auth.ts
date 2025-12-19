@@ -8,7 +8,7 @@ import { request } from '../request';
  */
 export function fetchLogin(userName: string, password: string) {
   return request<Api.Auth.LoginToken>({
-    url: '/auth/login',
+    url: '/user/login',
     method: 'post',
     data: {
       userName,
@@ -17,9 +17,13 @@ export function fetchLogin(userName: string, password: string) {
   });
 }
 
-/** Get user info */
-export function fetchGetUserInfo() {
-  return request<Api.Auth.UserInfo>({ url: '/auth/getUserInfo' });
+/**
+ * Get user info
+ *
+ * @param userId User ID
+ */
+export function fetchGetUserInfo(userId: number = 0) {
+  return request<Api.Auth.UserInfo>({ url: `/user/info${userId ? `/${userId}` : ''}` });
 }
 
 /**
@@ -29,7 +33,7 @@ export function fetchGetUserInfo() {
  */
 export function fetchRefreshToken(refreshToken: string) {
   return request<Api.Auth.LoginToken>({
-    url: '/auth/refreshToken',
+    url: '/user/refreshToken',
     method: 'post',
     data: {
       refreshToken

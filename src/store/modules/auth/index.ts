@@ -24,6 +24,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const userInfo: Api.Auth.UserInfo = reactive({
     userId: '',
     userName: '',
+    phone: '',
+    email: '',
+    nickName: '',
     roles: [],
     buttons: []
   });
@@ -32,7 +35,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const isStaticSuper = computed(() => {
     const { VITE_AUTH_ROUTE_MODE, VITE_STATIC_SUPER_ROLE } = import.meta.env;
 
-    return VITE_AUTH_ROUTE_MODE === 'static' && userInfo.roles.includes(VITE_STATIC_SUPER_ROLE);
+    return (
+      VITE_AUTH_ROUTE_MODE === 'static' && userInfo.roles.map(role => role.roleName).includes(VITE_STATIC_SUPER_ROLE)
+    );
   });
 
   /** Is login */

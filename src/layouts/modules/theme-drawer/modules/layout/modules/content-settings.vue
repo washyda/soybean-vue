@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { themePageAnimationModeOptions, themeScrollModeOptions } from '@/constants/app';
 import { useThemeStore } from '@/store/modules/theme';
-import { translateOptions } from '@/utils/common';
+import { translateStringOptions } from '@/utils/common';
 import { $t } from '@/locales';
 import SettingItem from '../../../components/setting-item.vue';
 
@@ -24,7 +24,7 @@ const isWrapperScrollMode = computed(() => themeStore.layout.scrollMode === 'wra
       </template>
       <NSelect
         v-model:value="themeStore.layout.scrollMode"
-        :options="translateOptions(themeScrollModeOptions)"
+        :options="translateStringOptions(themeScrollModeOptions)"
         size="small"
         class="w-120px"
       />
@@ -35,7 +35,7 @@ const isWrapperScrollMode = computed(() => themeStore.layout.scrollMode === 'wra
     <SettingItem v-if="themeStore.page.animate" key="3" :label="$t('theme.layout.content.page.mode.title')">
       <NSelect
         v-model:value="themeStore.page.animateMode"
-        :options="translateOptions(themePageAnimationModeOptions)"
+        :options="translateStringOptions(themePageAnimationModeOptions)"
         size="small"
         class="w-120px"
       />

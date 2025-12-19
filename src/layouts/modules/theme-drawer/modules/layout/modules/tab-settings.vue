@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { themeTabModeOptions } from '@/constants/app';
 import { useThemeStore } from '@/store/modules/theme';
-import { translateOptions } from '@/utils/common';
+import { translateStringOptions } from '@/utils/common';
 import { $t } from '@/locales';
 import SettingItem from '../../../components/setting-item.vue';
 
@@ -30,7 +30,7 @@ const themeStore = useThemeStore();
     <SettingItem v-if="themeStore.tab.visible" key="4" :label="$t('theme.layout.tab.mode.title')">
       <NSelect
         v-model:value="themeStore.tab.mode"
-        :options="translateOptions(themeTabModeOptions)"
+        :options="translateStringOptions(themeTabModeOptions)"
         size="small"
         class="w-120px"
       />

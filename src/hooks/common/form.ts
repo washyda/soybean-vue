@@ -1,7 +1,16 @@
 import { ref, toValue } from 'vue';
 import type { ComputedRef, Ref } from 'vue';
 import type { FormInst } from 'naive-ui';
-import { REG_CODE_SIX, REG_EMAIL, REG_PHONE, REG_PWD, REG_USER_NAME } from '@/constants/reg';
+import {
+  REG_CODE_SIX,
+  REG_EMAIL,
+  REG_NICK_NAME,
+  REG_PHONE,
+  REG_PWD,
+  REG_ROLE_CODE,
+  REG_ROLE_NAME,
+  REG_USER_NAME
+} from '@/constants/reg';
 import { $t } from '@/locales';
 
 export function useFormRules() {
@@ -9,6 +18,11 @@ export function useFormRules() {
     userName: {
       pattern: REG_USER_NAME,
       message: $t('form.userName.invalid'),
+      trigger: 'change'
+    },
+    nickName: {
+      pattern: REG_NICK_NAME,
+      message: $t('form.nickName.invalid'),
       trigger: 'change'
     },
     phone: {
@@ -30,15 +44,28 @@ export function useFormRules() {
       pattern: REG_EMAIL,
       message: $t('form.email.invalid'),
       trigger: 'change'
+    },
+    roleName: {
+      pattern: REG_ROLE_NAME,
+      message: $t('form.roleName.invalid'),
+      trigger: 'change'
+    },
+    roleCode: {
+      pattern: REG_ROLE_CODE,
+      message: $t('form.roleCode.invalid'),
+      trigger: 'change'
     }
   } satisfies Record<string, App.Global.FormRule>;
 
   const formRules = {
     userName: [createRequiredRule($t('form.userName.required')), patternRules.userName],
+    nickName: [createRequiredRule($t('form.nickName.required')), patternRules.nickName],
     phone: [createRequiredRule($t('form.phone.required')), patternRules.phone],
     pwd: [createRequiredRule($t('form.pwd.required')), patternRules.pwd],
     code: [createRequiredRule($t('form.code.required')), patternRules.code],
-    email: [createRequiredRule($t('form.email.required')), patternRules.email]
+    email: [createRequiredRule($t('form.email.required')), patternRules.email],
+    roleName: [createRequiredRule($t('form.roleName.required')), patternRules.roleName],
+    roleCode: [createRequiredRule($t('form.roleCode.required')), patternRules.roleCode]
   } satisfies Record<string, App.Global.FormRule[]>;
 
   /** the default required rule */
