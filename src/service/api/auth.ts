@@ -9,7 +9,7 @@ import { request } from '../request';
 export function fetchLogin(userName: string, password: string) {
   return request<Api.Auth.LoginToken>({
     url: '/user/login',
-    method: 'post',
+    method: 'POST',
     data: {
       userName,
       password
@@ -33,8 +33,8 @@ export function fetchGetUserInfo(userId: number = 0) {
  */
 export function fetchRefreshToken(refreshToken: string) {
   return request<Api.Auth.LoginToken>({
-    url: '/user/refreshToken',
-    method: 'post',
+    url: '/user/refresh_token',
+    method: 'POST',
     data: {
       refreshToken
     }
