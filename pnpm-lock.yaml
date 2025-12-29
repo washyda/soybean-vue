@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  unplugin-vue-components:
+    hash: cac4a3bb303097d0815efcc08f2e6c48dc6ce95cea878a1ec6af34f8cc0c1866
+    path: patches/unplugin-vue-components.patch
+
 importers:
 
   .:
@@ -146,7 +151,7 @@ importers:
         version: 22.5.0(@vue/compiler-sfc@3.5.25)
       unplugin-vue-components:
         specifier: 30.0.0
-        version: 30.0.0(@babel/parser@7.28.5)(vue@3.5.25(typescript@5.9.3))
+        version: 30.0.0(patch_hash=cac4a3bb303097d0815efcc08f2e6c48dc6ce95cea878a1ec6af34f8cc0c1866)(@babel/parser@7.28.5)(vue@3.5.25(typescript@5.9.3))
       vite:
         specifier: 7.2.6
         version: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.2)(tsx@4.21.0)(yaml@2.8.2)
@@ -8091,7 +8096,7 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.3
 
-  unplugin-vue-components@30.0.0(@babel/parser@7.28.5)(vue@3.5.25(typescript@5.9.3)):
+  unplugin-vue-components@30.0.0(patch_hash=cac4a3bb303097d0815efcc08f2e6c48dc6ce95cea878a1ec6af34f8cc0c1866)(@babel/parser@7.28.5)(vue@3.5.25(typescript@5.9.3)):
     dependencies:
       chokidar: 4.0.3
       debug: 4.4.3
