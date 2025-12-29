@@ -27,3 +27,8 @@ export const menuIconTypeRecord: Record<Api.SystemManage.IconType, App.I18n.I18n
 };
 
 export const menuIconTypeOptions = transformRecordToOption(menuIconTypeRecord);
+
+export const LayoutTypeRecord: Record<Api.SystemManage.LayoutType, string> = {
+  '1': 'base',
+  '2': 'blank'
+};

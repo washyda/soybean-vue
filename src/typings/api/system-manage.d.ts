@@ -110,6 +110,14 @@ declare namespace Api {
      */
     type IconType = 1 | 2;
 
+    /**
+     * layout type
+     *
+     * - "1": "base"
+     * - "2": "blank"
+     */
+    type LayoutType = 1 | 2;
+
     type MenuPropsOfRoute = Pick<
       import('vue-router').RouteMeta,
       | 'i18nKey'

@@ -49,7 +49,7 @@ function createDefaultModel(): Model {
   return {
     id: -1,
     userName: '',
-    gender: null,
+    gender: 1,
     nickName: '',
     phone: '',
     email: '',
@@ -58,11 +58,12 @@ function createDefaultModel(): Model {
   };
 }
 
-type RuleKey = Extract<keyof Model, 'userName' | 'nickName' | 'status' | 'phone' | 'email'>;
+type RuleKey = Extract<keyof Model, 'userName' | 'nickName' | 'gender' | 'status' | 'phone' | 'email'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
   userName: formRules.userName[0],
   nickName: formRules.nickName[0],
+  gender: defaultRequiredRule,
   phone: formRules.phone[0],
   email: formRules.email[0],
   status: defaultRequiredRule

@@ -1,3 +1,5 @@
+import { LayoutTypeRecord } from '@/constants/business';
+
 const LAYOUT_PREFIX = 'layout.';
 const VIEW_PREFIX = 'view.';
 const FIRST_LEVEL_ROUTE_COMPONENT_SPLIT = '$';
@@ -22,16 +24,17 @@ function getPage(page: string) {
   return page.startsWith(VIEW_PREFIX) ? page.replace(VIEW_PREFIX, '') : '';
 }
 
-export function transformLayoutAndPageToComponent(layout: string, page: string) {
-  const hasLayout = Boolean(layout);
+export function transformLayoutAndPageToComponent(page: string, layout?: number) {
   const hasPage = Boolean(page);
 
-  if (hasLayout && hasPage) {
-    return `${LAYOUT_PREFIX}${layout}${FIRST_LEVEL_ROUTE_COMPONENT_SPLIT}${VIEW_PREFIX}${page}`;
+  const layoutName = (layout && LayoutTypeRecord[layout as Api.SystemManage.LayoutType]) || '';
+
+  if (layout && hasPage) {
+    return `${LAYOUT_PREFIX}${layoutName}${FIRST_LEVEL_ROUTE_COMPONENT_SPLIT}${VIEW_PREFIX}${page}`;
   }
 
-  if (hasLayout) {
-    return `${LAYOUT_PREFIX}${layout}`;
+  if (layout) {
+    return `${LAYOUT_PREFIX}${layoutName}`;
   }
 
   if (hasPage) {

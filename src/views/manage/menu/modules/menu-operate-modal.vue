@@ -77,7 +77,7 @@ type Model = Pick<
 > & {
   query: NonNullable<Api.SystemManage.Menu['query']>;
   buttons: NonNullable<Api.SystemManage.Menu['buttons']>;
-  layout: string;
+  layout?: number;
   page: string;
   pathParam: string;
 };
@@ -92,7 +92,7 @@ function createDefaultModel(): Model {
     routePath: '',
     pathParam: '',
     component: '',
-    layout: '',
+    layout: undefined,
     page: '',
     i18nKey: null,
     icon: '',
@@ -240,7 +240,7 @@ function handleCreateButton() {
 function getSubmitParams() {
   const { layout, page, pathParam, ...params } = model.value;
 
-  const component = transformLayoutAndPageToComponent(layout, page);
+  const component = transformLayoutAndPageToComponent(page, layout);
   const routePath = getRoutePathWithParam(model.value.routePath, pathParam);
 
   params.component = component;
@@ -254,7 +254,11 @@ async function handleSubmit() {
 
   const _ = getSubmitParams();
 
-  // console.log('params: ', params);
+  // if (props.operateType === 'add') {
+  //   console.log(params);
+  // } else {
+  //   console.log(params);
+  // }
 
   // request
   window.$message?.success($t('common.updateSuccess'));
@@ -319,7 +323,13 @@ watch(
             <NInput v-model:value="model.i18nKey" :placeholder="$t('page.manage.menu.form.i18nKey')" />
           </NFormItemGi>
           <NFormItemGi span="24 m:12" :label="$t('page.manage.menu.order')" path="order">
-            <NInputNumber v-model:value="model.order" class="w-full" :placeholder="$t('page.manage.menu.form.order')" />
+            <NInputNumber
+              v-model:value="model.order"
+              :min="-128"
+              :max="127"
+              class="w-full"
+              :placeholder="$t('page.manage.menu.form.order')"
+            />
           </NFormItemGi>
           <NFormItemGi span="24 m:12" :label="$t('page.manage.menu.iconTypeTitle')" path="iconType">
             <NRadioGroup v-model:value="model.iconType">
