@@ -90,6 +90,7 @@ export const request = createFlatRequest(
           const Authorization = getAuthorization();
           Object.assign(response.config.headers, { Authorization });
 
+          // noinspection ES6MissingAwait
           return instance.request(response.config) as Promise<AxiosResponse>;
         }
       }

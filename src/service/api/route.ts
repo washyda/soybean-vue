@@ -11,7 +11,7 @@ export function fetchGetUserRoutes() {
 }
 
 /**
- * whether the route is exist
+ * whether the route is existed
  *
  * @param routeName route name
  */

@@ -70,7 +70,7 @@ const rules: Record<RuleKey, App.Global.FormRule> = {
 };
 
 /** the enabled role options */
-const roleOptions = ref<CommonType.Option<number>[]>([]);
+const roleOptions = ref<CommonType.Option[]>([]);
 
 async function getRoleOptions() {
   const { error, data } = await fetchGetAllRoles();

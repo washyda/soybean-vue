@@ -5,9 +5,7 @@ import type { RequestInstanceState } from './type';
 
 export function getAuthorization() {
   const token = localStg.get('token');
-  const Authorization = token || null;
-
-  return Authorization;
+  return token || null;
 }
 
 /** refresh token */
@@ -22,6 +20,7 @@ async function handleRefreshToken() {
     return true;
   }
 
+  // noinspection ES6MissingAwait
   resetStore();
 
   return false;
