@@ -116,7 +116,7 @@ declare namespace Api {
      * - "1": "base"
      * - "2": "blank"
      */
-    type LayoutType = 1 | 2;
+    type LayoutType = 'base' | 'blank';
 
     type MenuPropsOfRoute = Pick<
       import('vue-router').RouteMeta,
@@ -159,8 +159,38 @@ declare namespace Api {
     /** menu list */
     type MenuList = Common.PaginatingQueryRecord<Menu>;
 
+    type MenuAddParams = Pick<
+      Api.SystemManage.Menu,
+      | 'menuType'
+      | 'menuName'
+      | 'routeName'
+      | 'routePath'
+      | 'component'
+      | 'order'
+      | 'i18nKey'
+      | 'icon'
+      | 'iconType'
+      | 'status'
+      | 'parentId'
+      | 'keepAlive'
+      | 'constant'
+      | 'href'
+      | 'hideInMenu'
+      | 'activeMenu'
+      | 'multiTab'
+      | 'fixedIndexInTab'
+    > & {
+      query: NonNullable<Api.SystemManage.Menu['query']>;
+      buttons: NonNullable<Api.SystemManage.Menu['buttons']>;
+    };
+
+    /** menu update params */
+    type MenuUpdateParams = MenuAddParams & Pick<Api.SystemManage.Menu, 'id'>;
+
+    /** menu search params */
     type MenuSearchParams = CommonType.RecordNullable<CommonSearchParams>;
 
+    /** menu tree */
     type MenuTree = {
       id: number;
       label: string;

@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import type { SelectOption } from 'naive-ui';
 import { enableStatusOptions, menuIconTypeOptions, menuTypeOptions } from '@/constants/business';
-import { fetchGetAllRoles } from '@/service/api';
+import { fetchAddMenu, fetchGetAllRoles, fetchUpdateMenu } from '@/service/api';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { getLocalIcons } from '@/utils/icon';
 import { $t } from '@/locales';
@@ -27,7 +27,7 @@ interface Props {
   /** the edit menu data or the parent menu data when adding a child menu */
   rowData?: Api.SystemManage.Menu | null;
   /** all pages */
-  allPages: string[];
+  allPages: CommonType.Option[];
 }
 
 const props = defineProps<Props>();
@@ -77,7 +77,7 @@ type Model = Pick<
 > & {
   query: NonNullable<Api.SystemManage.Menu['query']>;
   buttons: NonNullable<Api.SystemManage.Menu['buttons']>;
-  layout?: number;
+  layout: string;
   page: string;
   pathParam: string;
 };
@@ -92,7 +92,7 @@ function createDefaultModel(): Model {
     routePath: '',
     pathParam: '',
     component: '',
-    layout: undefined,
+    layout: '',
     page: '',
     i18nKey: null,
     icon: '',
@@ -141,26 +141,24 @@ const showPage = computed(() => model.value.menuType === 2);
 const pageOptions = computed(() => {
   const allPages = [...props.allPages];
 
-  if (model.value.routeName && !allPages.includes(model.value.routeName)) {
-    allPages.unshift(model.value.routeName);
+  if (model.value.menuName && model.value.routeName && !allPages.some(page => page.value === model.value.routeName)) {
+    allPages.unshift({
+      label: model.value.menuName,
+      value: model.value.routeName
+    });
   }
 
-  const opts: CommonType.Option[] = allPages.map((page, index) => ({
-    label: page,
-    value: index
-  }));
-
-  return opts;
+  return allPages;
 });
 
 const layoutOptions: CommonType.Option[] = [
   {
-    label: 'base',
-    value: 1
+    label: '默认布局',
+    value: 'base'
   },
   {
-    label: 'blank',
-    value: 2
+    label: '空白布局',
+    value: 'blank'
   }
 ];
 
@@ -239,7 +237,6 @@ function handleCreateButton() {
 
 function getSubmitParams() {
   const { layout, page, pathParam, ...params } = model.value;
-
   const component = transformLayoutAndPageToComponent(page, layout);
   const routePath = getRoutePathWithParam(model.value.routePath, pathParam);
 
@@ -252,13 +249,15 @@ function getSubmitParams() {
 async function handleSubmit() {
   await validate();
 
-  const _ = getSubmitParams();
+  const params = getSubmitParams();
 
-  // if (props.operateType === 'add') {
-  //   console.log(params);
-  // } else {
-  //   console.log(params);
-  // }
+  if (props.operateType === 'add' || props.operateType === 'addChild') {
+    const { error } = await fetchAddMenu(params);
+    if (error) return;
+  } else {
+    const { error } = await fetchUpdateMenu({ ...params, id: props.rowData!.id });
+    if (error) return;
+  }
 
   // request
   window.$message?.success($t('common.updateSuccess'));

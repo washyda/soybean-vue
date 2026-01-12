@@ -125,6 +125,34 @@ export function fetchRemoveUser(params: Api.SystemManage.User['id'][]) {
 }
 
 /**
+ * add menu
+ * 添加菜单
+ * @param params - menu add params
+ * @returns operation response - 操作响应
+ */
+export function fetchAddMenu(params: Api.SystemManage.MenuAddParams) {
+  return request<Api.Common.OperationResponse>({
+    url: '/menu/add',
+    method: 'POST',
+    data: params
+  });
+}
+
+/**
+ * update menu
+ * 更新菜单
+ * @param params - menu update params
+ * @returns operation response - 操作响应
+ */
+export function fetchUpdateMenu(params: Api.SystemManage.MenuUpdateParams) {
+  return request<Api.Common.OperationResponse>({
+    url: '/menu/update',
+    method: 'POST',
+    data: params
+  });
+}
+
+/**
  * get menu list
  * 获取菜单列表
  * @param params - menu search params
@@ -144,7 +172,7 @@ export function fetchGetMenuList(params?: Api.SystemManage.MenuSearchParams) {
  * @returns all pages - 所有菜单页
  */
 export function fetchGetAllPages() {
-  return request<string[]>({
+  return request<CommonType.Option[]>({
     url: '/menu/all',
     method: 'GET'
   });

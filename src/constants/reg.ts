@@ -1,14 +1,14 @@
-export const REG_USER_NAME = /^[\u4E00-\u9FA5a-zA-Z0-9_-]{4,16}$/;
+export const REG_USER_NAME = /^[一-龥a-zA-Z]{4,16}$/;
 
-export const REG_NICK_NAME = /^[\u4E00-\u9FA5a-zA-Z0-9_-]{2,10}$/;
+export const REG_NICK_NAME = /^[一-龥a-zA-Z]{4,16}$/;
 
-export const REG_ROLE_NAME = /^[\u4E00-\u9FA5a-zA-Z0-9_-]{2,10}$/;
+export const REG_ROLE_NAME = /^[一-龥a-zA-Z]{2,16}$/;
 
-export const REG_ROLE_CODE = /^[\u4E00-\u9FA5a-zA-Z0-9_-]{2,8}$/;
+export const REG_ROLE_CODE = /^[A-Z_]{4,16}$/;
 
 /** Phone reg */
 export const REG_PHONE =
-  /^[1](([3][0-9])|([4][01456789])|([5][012356789])|([6][2567])|([7][0-8])|([8][0-9])|([9][012356789]))[0-9]{8}$/;
+  /^1((3[0-9])|(4[01456789])|(5[012356789])|(6[2567])|(7[0-8])|(8[0-9])|(9[012356789]))[0-9]{8}$/;
 
 /**
  * Password reg

@@ -221,7 +221,7 @@ function handleAddChildMenu(item: Api.SystemManage.Menu) {
   openModal();
 }
 
-const allPages = ref<string[]>([]);
+const allPages = ref<CommonType.Option[]>([]);
 
 async function getAllPages() {
   const { data: pages } = await fetchGetAllPages();
