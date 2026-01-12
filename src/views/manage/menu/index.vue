@@ -97,7 +97,8 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
       key: 'routePath',
       title: $t('page.manage.menu.routePath'),
       align: 'center',
-      minWidth: 120
+      minWidth: 120,
+      ellipsis: true
     },
     {
       key: 'status',

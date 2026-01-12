@@ -232,7 +232,11 @@ const local: App.I18n.Schema = {
     manage: 'System Manage',
     manage_role: 'Role Manage',
     manage_user: 'User Manage',
-    manage_menu: 'Menu Manage'
+    manage_menu: 'Menu Manage',
+    exception: 'Exception',
+    exception_403: '403',
+    exception_404: '404',
+    exception_500: '500'
   },
   page: {
     login: {
