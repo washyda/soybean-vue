@@ -344,6 +344,8 @@ const local: App.I18n.Schema = {
         }
       },
       role: {
+        menuAuth: '菜单权限',
+        buttonAuth: '按钮权限',
         addRole: '添加角色',
         editRole: '编辑角色',
         title: '角色管理',

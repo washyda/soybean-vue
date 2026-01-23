@@ -587,6 +587,8 @@ declare namespace App {
             };
           };
           role: {
+            menuAuth: string;
+            buttonAuth: string;
             addRole: string;
             editRole: string;
             title: string;

@@ -348,6 +348,8 @@ const local: App.I18n.Schema = {
         }
       },
       role: {
+        menuAuth: 'Menu Auth',
+        buttonAuth: 'Button Auth',
         addRole: 'Add Role',
         editRole: 'Edit Role',
         title: 'Role Manage',

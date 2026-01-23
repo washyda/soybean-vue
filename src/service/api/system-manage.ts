@@ -178,10 +178,35 @@ export function fetchGetAllPages() {
   });
 }
 
-/** get menu tree */
+/**
+ * get menu tree
+ * 获取菜单树结构
+ * @returns 菜单树
+ */
 export function fetchGetMenuTree() {
   return request<Api.SystemManage.MenuTree[]>({
-    url: '/systemManage/getMenuTree',
+    url: '/menu/tree',
     method: 'GET'
+  });
+}
+
+/**
+ * get role-associated menu
+ * 获取角色关联菜单
+ * @param roleId 角色id
+ * @returns 菜单列表
+ */
+export function fetchGetRoleMenus(roleId: number) {
+  return request<Api.SystemManage.Menu['id'][]>({
+    url: `/role/menus/${roleId}`,
+    method: 'GET'
+  });
+}
+
+export function fetchUpdateRoleMenus(params: Api.SystemManage.RoleMenuUpdateParams) {
+  return request<Pick<Api.SystemManage.Menu, 'id'>[]>({
+    url: '/role/relatedMenu',
+    method: 'POST',
+    data: params
   });
 }

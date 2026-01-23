@@ -190,11 +190,21 @@ declare namespace Api {
     /** menu search params */
     type MenuSearchParams = CommonType.RecordNullable<CommonSearchParams>;
 
+    /** role-menu update params */
+    type RoleMenuUpdateParams = {
+      /** role id */
+      roleId: Api.SystemManage.Role['id'];
+      /** select node */
+      checks: Api.SystemManage.Menu['id'][];
+      /** partially selected node */
+      indeterminate: Api.SystemManage.Menu['id'][];
+    };
+
     /** menu tree */
     type MenuTree = {
       id: number;
       label: string;
-      pId: number;
+      parentId: number;
       children?: MenuTree[];
     };
   }

@@ -1,6 +1,7 @@
 <script setup lang="tsx">
-import { reactive } from 'vue';
+import { ref } from 'vue';
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { useBoolean } from '@sa/hooks';
 import { enableStatusRecord } from '@/constants/business';
 import { fetchGetRoleList, fetchRemoveRole } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
@@ -8,22 +9,32 @@ import { defaultTransform, useNaivePaginatedTable, useTableOperate } from '@/hoo
 import { $t } from '@/locales';
 import RoleSearch from './modules/role-search.vue';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
+import MenuAuthModal from './modules/menu-auth-modal.vue';
+import ButtonAuthModal from './modules/button-auth-modal.vue';
 
 const appStore = useAppStore();
 
-const searchParams = reactive<Api.SystemManage.RoleSearchParams>({
+const searchParams = ref<Api.SystemManage.RoleSearchParams>({
   status: null,
   querySearch: null,
   current: 1,
   size: 12
 });
 
+enum OperationType {
+  AUTHMENU,
+  AUTHBUTTON
+}
+
+const { bool: menuAuthVisible, setTrue: openMenuAuthModal } = useBoolean();
+const { bool: buttonAuthVisible, setTrue: openButtonAuthModal } = useBoolean();
+
 const { data, columns, columnChecks, loading, mobilePagination, getData, getDataByPage } = useNaivePaginatedTable({
-  api: () => fetchGetRoleList(searchParams),
+  api: () => fetchGetRoleList(searchParams.value),
   transform: response => defaultTransform(response),
   onPaginationParamsChange: params => {
-    searchParams.current = params.page;
-    searchParams.size = params.pageSize;
+    searchParams.value.current = params.page;
+    searchParams.value.size = params.pageSize;
   },
   columns: () => [
     {
@@ -80,11 +91,31 @@ const { data, columns, columnChecks, loading, mobilePagination, getData, getData
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
-      width: 130,
+      width: 300,
       render: row => (
         <div class="flex-center gap-8px">
           <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
+          </NButton>
+          <NButton
+            type="primary"
+            ghost
+            size="small"
+            onClick={() => {
+              openModal(row, OperationType.AUTHMENU);
+            }}
+          >
+            {$t('page.manage.role.menuAuth')}
+          </NButton>
+          <NButton
+            type="primary"
+            ghost
+            size="small"
+            onClick={() => {
+              openModal(row, OperationType.AUTHBUTTON);
+            }}
+          >
+            {$t('page.manage.role.buttonAuth')}
           </NButton>
           <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
             {{
@@ -129,6 +160,16 @@ async function handleBatchDelete() {
 function edit(id: number) {
   handleEdit(id);
 }
+
+const roleId = ref<number>(-1);
+function openModal(row: Api.SystemManage.Role, mode: OperationType) {
+  roleId.value = row.id;
+  if (mode === OperationType.AUTHMENU) {
+    openMenuAuthModal();
+  } else {
+    openButtonAuthModal();
+  }
+}
 </script>
 
 <template>
@@ -165,5 +206,7 @@ function edit(id: number) {
         @submitted="getDataByPage"
       />
     </NCard>
+    <MenuAuthModal v-model:visible="menuAuthVisible" :role-id="roleId" />
+    <ButtonAuthModal v-model:visible="buttonAuthVisible" :role-id="roleId" />
   </div>
 </template>
